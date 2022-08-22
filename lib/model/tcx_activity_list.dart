@@ -27,4 +27,25 @@ class TcxActivityList implements TcxSerializable {
 
     return XmlElement(name, [], children);
   }
+
+  TcxActivityList.fromXmlElement(XmlElement xmlElement) {
+    bool error = false;
+
+    for (XmlElement child in xmlElement.childElements) {
+      switch (child.name.local) {
+        case activityXmlTag:
+          activity.add(TcxActivity.fromXmlElement(child));
+          break;
+        case multiSportSessionXmlTag:
+          break;
+        default:
+          error = true;
+          break;
+      }
+    }
+
+    if (error) {
+      throw (ArgumentError("Invalid xmlElement in TcxActivity."));
+    }
+  }
 }

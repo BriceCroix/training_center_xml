@@ -1,7 +1,8 @@
 abstract class TcxSports{
-  static const running = "Running";
-  static const biking = "Biking";
-  static const other = "Other";
+  static const String running = "Running";
+  static const String biking = "Biking";
+  static const String other = "Other";
+  static const List<String> values = [running, biking, other];
 }
 /// Only TcxSports values are valid.
 typedef TcxSport = String;

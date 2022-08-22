@@ -5,9 +5,9 @@ import 'package:training_center_xml/model/tcx_serializable.dart';
 import 'package:training_center_xml/model/tcx_cadence_value.dart';
 import 'package:xml/xml.dart';
 
-class TcxTrackpoint implements TcxSerializable{
+class TcxTrackpoint implements TcxSerializable {
   static const String timeXmlTag = "Time";
-  DateTime time;
+  late DateTime time;
 
   static const String positionXmlTag = "Position";
   TcxPosition? position;
@@ -21,6 +21,9 @@ class TcxTrackpoint implements TcxSerializable{
   TcxCadenceValue? cadence;
   static const String sensorStateXmlTag = "SensorState";
   TcxSensorState? sensorState;
+  static const String extensionsXmlTag = "Extensions";
+
+  //TcxExtension? extensions; // TODO
 
   TcxTrackpoint(
       {required this.time,
@@ -56,10 +59,57 @@ class TcxTrackpoint implements TcxSerializable{
           XmlName(cadenceXmlTag), [], [XmlText(cadence!.toString())]));
     }
     if (sensorState != null) {
-      children.add(XmlElement(
-          XmlName(cadenceXmlTag), [], [XmlText(sensorState!)]));
+      children
+          .add(XmlElement(XmlName(cadenceXmlTag), [], [XmlText(sensorState!)]));
     }
 
     return XmlElement(name, [], children);
+  }
+
+  /// Throws an [ArgumentError] if cannot find valid children.
+  TcxTrackpoint.fromXmlElement(XmlElement xmlElement) {
+    bool error = false;
+
+    bool timeInitialized = false;
+    for (XmlElement child in xmlElement.childElements) {
+      switch (child.name.local) {
+        case timeXmlTag:
+          time = DateTime.parse(child.text);
+          timeInitialized = true;
+          break;
+        case positionXmlTag:
+          position = TcxPosition.fromXmlElement(child);
+          break;
+        case altitudeMetersXmlTag:
+          altitudeMeters = double.parse(child.text);
+          break;
+        case distanceMetersXmlTag:
+          distanceMeters = double.parse(child.text);
+          break;
+        case heartRateBeatsPerMinuteXmlTag:
+          heartRateBeatsPerMinute =
+              TcxHeartRateInBeatsPerMinute.fromXmlElement(child);
+          break;
+        case cadenceXmlTag:
+          cadence = TcxCadenceValue.parse(child.text);
+          break;
+        case sensorStateXmlTag:
+          sensorState = child.text;
+          break;
+        case extensionsXmlTag:
+          break;
+        default:
+          error = true;
+          break;
+      }
+    }
+    error = error || !timeInitialized;
+    if (sensorState != null) {
+      error |= !TcxSensorStates.values.contains(sensorState);
+    }
+
+    if (error) {
+      throw (ArgumentError("Invalid xmlElement in TcxTrackpoint."));
+    }
   }
 }

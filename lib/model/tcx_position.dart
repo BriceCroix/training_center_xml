@@ -5,9 +5,9 @@ import 'tcx_degrees_longitude.dart';
 
 class TcxPosition implements TcxSerializable {
   static const latitudeDegreesXmlTag = "LatitudeDegrees";
-  TcxDegreesLatitude latitudeDegrees;
+  late TcxDegreesLatitude latitudeDegrees;
   static const longitudeDegreesXmlTag = "LongitudeDegrees";
-  TcxDegreesLongitude longitudeDegrees;
+  late TcxDegreesLongitude longitudeDegrees;
 
   TcxPosition({required this.latitudeDegrees, required this.longitudeDegrees});
 
@@ -19,5 +19,34 @@ class TcxPosition implements TcxSerializable {
       XmlElement(XmlName(longitudeDegreesXmlTag), [],
           [XmlText(longitudeDegrees.toString())]),
     ]);
+  }
+
+  /// Throws an [ArgumentError] if cannot find valid children.
+  TcxPosition.fromXmlElement(XmlElement xmlElement) {
+    bool error = false;
+
+    bool latitudeDegreesInitialized = false;
+    bool longitudeDegreesInitialized = false;
+    for (XmlElement child in xmlElement.childElements) {
+      switch (child.name.local) {
+        case latitudeDegreesXmlTag:
+          latitudeDegrees = double.parse(child.text);
+          latitudeDegreesInitialized = true;
+          break;
+        case longitudeDegreesXmlTag:
+          longitudeDegrees = double.parse(child.text);
+          longitudeDegreesInitialized = true;
+          break;
+        default:
+          error = true;
+          break;
+      }
+    }
+    error =
+        error || !latitudeDegreesInitialized || !longitudeDegreesInitialized;
+
+    if (error) {
+      throw (ArgumentError("Invalid xmlElement in TcxPosition.}"));
+    }
   }
 }

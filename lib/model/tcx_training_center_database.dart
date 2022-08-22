@@ -18,16 +18,16 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
     "xmlns:ns4": "http://www.garmin.com/xmlschemas/ProfileExtension/v1"
   };
   static const String foldersXmlTag = "Folders";
-
-  //TcxFolders? folders; //TODO
+  //TODO
+  //TcxFolders? folders;
   static const String activitiesXmlTag = "Activities";
   TcxActivityList? activities;
   static const String workoutsXmlTag = "Workouts";
-
-  //TcxWorkoutList? workouts; //TODO
+  //TODO
+  //TcxWorkoutList? workouts;
   static const String coursesXmlTag = "Courses";
-
-  //TcxCourseList? courses; //TODO
+  //TODO
+  //TcxCourseList? courses;
   static const String authorXmlTag = "Author";
   TcxAbstractSource? author;
 
@@ -63,7 +63,7 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
     return XmlElement(name, attributes, children);
   }
 
-  String toXmlString([bool pretty=false, String indent='  ']){
+  String toXmlString({bool pretty=false, String indent='  '}){
     XmlDocument document = XmlDocument();
     XmlDeclaration declaration = XmlDeclaration();
     declaration.version = "1.0";
@@ -71,5 +71,29 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
     document.children.add(declaration);
     document.children.add(toXmlElement(XmlName(rootXmlTag)));
     return document.toXmlString(pretty:pretty, indent:indent);
+  }
+
+  TcxTrainingCenterDatabase.fromXmlString(String xmlString){
+    final XmlDocument document = XmlDocument.parse(xmlString);
+    final tcxCenterDatabase = document.rootElement;
+    if(tcxCenterDatabase.name != XmlName(rootXmlTag)){
+      throw ArgumentError('Could not find XmlElement $rootXmlTag');
+    }
+    for(XmlElement child in tcxCenterDatabase.childElements){
+      switch(child.name.local){
+        case foldersXmlTag:
+          break;//TODO
+        case activitiesXmlTag:
+          activities = TcxActivityList.fromXmlElement(child);
+          break;
+        case workoutsXmlTag:
+          break;//TODO
+        case coursesXmlTag:
+          break;//TODO
+        case authorXmlTag:
+          author = TcxAbstractSource.fromXmlElement(child);
+          break;
+      }
+    }
   }
 }

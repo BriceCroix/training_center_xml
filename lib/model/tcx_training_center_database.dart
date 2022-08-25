@@ -1,5 +1,6 @@
 import 'package:training_center_xml/model/tcx_serializable.dart';
 import 'package:xml/xml.dart';
+import 'extensions/tcx_extensions.dart';
 import 'tcx_abstract_source.dart';
 import 'tcx_activity_list.dart';
 
@@ -32,6 +33,8 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
   static const String authorXmlTag = "Author";
   /// Author of this database. This field is not required by the TCX schema definition.
   TcxAbstractSource? author;
+  static const String extensionsXmlTag = "Extensions";
+  TcxExtensions? extensions;
 
   TcxTrainingCenterDatabase({
     //this.folders,
@@ -39,6 +42,7 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
     //this.workouts,
     //this.courses,
     this.author,
+    this.extensions,
   });
 
   @override
@@ -64,6 +68,9 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
     // if(courses != null){
     //   children.add(courses!.toXmlElement(XmlName(coursesXmlTag)));
     // }
+    if (extensions != null) {
+      children.add(extensions!.toXmlElement(XmlName(extensionsXmlTag)));
+    }
 
     return XmlElement(name, attributes, children);
   }
@@ -97,6 +104,9 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
           break;//TODO
         case authorXmlTag:
           author = TcxAbstractSource.fromXmlElement(child);
+          break;
+        case extensionsXmlTag:
+          extensions = TcxExtensions.fromXmlElement(child);
           break;
       }
     }

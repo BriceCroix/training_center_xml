@@ -24,6 +24,11 @@ void testTcxTrainingCenterDatabase() {
           '<LongitudeDegrees>-1.510497</LongitudeDegrees>'
           '</Position>'
           '<AltitudeMeters>87.6771</AltitudeMeters>'
+          '<Extensions>'
+          '<TPX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">'
+          '<Speed>2.3</Speed>'
+          '</TPX>'
+          '</Extensions>'
           '</Trackpoint>'
           '<Trackpoint>'
           '<Time>2021-12-20T19:38:15.353Z</Time>'
@@ -32,18 +37,29 @@ void testTcxTrainingCenterDatabase() {
           '<LongitudeDegrees>-1.510103</LongitudeDegrees>'
           '</Position>'
           '<DistanceMeters>2.5626</DistanceMeters>'
+          '<Extensions>'
+          '<TPX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">'
+          '<Watts>15</Watts>'
+          '</TPX>'
+          '</Extensions>'
           '</Trackpoint>'
           '<Trackpoint>'
           '<Time>2021-12-20T19:38:15.364Z</Time>'
           '</Trackpoint>'
           '</Track>'
+          '<Extensions>'
+          '<LX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">'
+          '<AvgSpeed>15.4</AvgSpeed>'
+          '</LX>'
+          '</Extensions>'
           '</Lap>'
           '</Activity>'
           '</Activities>'
           '</TrainingCenterDatabase>';
       TcxTrainingCenterDatabase tcx =
           TcxTrainingCenterDatabase.fromXmlString(xmlString);
-      expect(tcx.toXmlString(), xmlString);
+      String tcxString = tcx.toXmlString();
+      expect(tcxString, xmlString);
     });
   });
 }

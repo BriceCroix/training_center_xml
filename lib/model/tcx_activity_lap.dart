@@ -1,3 +1,4 @@
+import 'extensions/tcx_extensions.dart';
 import 'tcx_intensity.dart';
 import 'tcx_serializable.dart';
 import 'package:xml/xml.dart';
@@ -49,7 +50,8 @@ class TcxActivityLap implements TcxSerializable {
   /// Notes about this lap. This field is not required by the TCX schema definition.
   String? notes;
   static const String extensionsXmlTag = "Extensions";
-  //Extensions? extensions;//TODO
+  /// Extensions of the TCX schema definition. This field is not required by the TCX schema definition.
+  TcxExtensions? extensions;
 
   TcxActivityLap(
       {DateTime? startTime,
@@ -63,7 +65,8 @@ class TcxActivityLap implements TcxSerializable {
       this.cadence,
       TcxTriggerMethod? triggerMethod,
       List<TcxTrack>? track,
-      this.notes})
+      this.notes,
+      this.extensions})
       : startTime = startTime ?? DateTime(0),
         totalTimeSeconds = totalTimeSeconds ?? 0,
         distanceMeters = distanceMeters ?? 0,
@@ -110,6 +113,10 @@ class TcxActivityLap implements TcxSerializable {
     }
     if (notes != null) {
       children.add(XmlElement(XmlName(notesXmlTag), [], [XmlText(notes!)]));
+    }
+    if (extensions != null) {
+      children.add(extensions!
+          .toXmlElement(XmlName(extensionsXmlTag)));
     }
 
     return XmlElement(name, attributes, children);
@@ -172,6 +179,7 @@ class TcxActivityLap implements TcxSerializable {
           notes = child.text;
           break;
         case extensionsXmlTag:
+          extensions = TcxExtensions.fromXmlElement(child);
           break;
         default:
           error = true;

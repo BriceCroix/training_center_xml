@@ -1,3 +1,4 @@
+import 'package:training_center_xml/model/extensions/tcx_extensions.dart';
 import 'package:training_center_xml/model/tcx_heart_rate_in_beats_per_minute.dart';
 import 'package:training_center_xml/model/tcx_position.dart';
 import 'package:training_center_xml/model/tcx_sensor_state.dart';
@@ -30,7 +31,7 @@ class TcxTrackpoint implements TcxSerializable {
   /// State of sensor at this trackpoint. This field is not required by the TCX schema definition.
   TcxSensorState? sensorState;
   static const String extensionsXmlTag = "Extensions";
-  //TcxExtension? extensions; // TODO
+  TcxExtensions? extensions;
 
   TcxTrackpoint(
       {DateTime? time,
@@ -39,7 +40,8 @@ class TcxTrackpoint implements TcxSerializable {
       this.distanceMeters,
       this.heartRateBeatsPerMinute,
       this.cadence,
-      this.sensorState}) : time = time ?? DateTime(0);
+      this.sensorState,
+      this.extensions}) : time = time ?? DateTime(0);
 
   @override
   XmlElement toXmlElement(XmlName name) {
@@ -68,6 +70,9 @@ class TcxTrackpoint implements TcxSerializable {
     if (sensorState != null) {
       children
           .add(XmlElement(XmlName(cadenceXmlTag), [], [XmlText(sensorState!)]));
+    }
+    if (extensions != null) {
+      children.add(extensions!.toXmlElement(XmlName(extensionsXmlTag)));
     }
 
     return XmlElement(name, [], children);
@@ -104,6 +109,7 @@ class TcxTrackpoint implements TcxSerializable {
           sensorState = child.text;
           break;
         case extensionsXmlTag:
+          extensions = TcxExtensions.fromXmlElement(child);
           break;
         default:
           error = true;

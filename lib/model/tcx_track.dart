@@ -2,16 +2,13 @@ import 'package:xml/xml.dart';
 import 'tcx_serializable.dart';
 import 'tcx_trackpoint.dart';
 
+/// Represents a track followed during a sport session.
 class TcxTrack implements TcxSerializable {
   static const trackpointXmlTag = "Trackpoint";
-  late List<TcxTrackpoint> trackpoint = const []; // Cannot be empty
+  /// List of all trackpoints of this track. This field is required not to be empty by the TCX schema definition.
+  late List<TcxTrackpoint> trackpoint = []; // Cannot be empty
 
-  /// Throws [ArgumentError] if given list of Trackpoint is empty.
-  TcxTrack({required this.trackpoint}) {
-    if (trackpoint.isEmpty) {
-      throw ArgumentError('List of Trackpoint cannot be empty.');
-    }
-  }
+  TcxTrack({List<TcxTrackpoint>? trackpoint}): trackpoint = trackpoint ?? [];
 
   @override
   XmlElement toXmlElement(XmlName name) {

@@ -3,7 +3,7 @@ import 'package:xml/xml.dart';
 import 'tcx_abstract_source.dart';
 import 'tcx_activity_list.dart';
 
-/// Root class of the TCX file format
+/// Root class of the TCX file format.
 class TcxTrainingCenterDatabase implements TcxSerializable {
   static const String rootXmlTag = "TrainingCenterDatabase";
 
@@ -21,6 +21,7 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
   //TODO
   //TcxFolders? folders;
   static const String activitiesXmlTag = "Activities";
+  /// Activity list of this database, this field is not required by the TCX schema definition.
   TcxActivityList? activities;
   static const String workoutsXmlTag = "Workouts";
   //TODO
@@ -29,6 +30,7 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
   //TODO
   //TcxCourseList? courses;
   static const String authorXmlTag = "Author";
+  /// Author of this database. This field is not required by the TCX schema definition.
   TcxAbstractSource? author;
 
   TcxTrainingCenterDatabase({
@@ -47,6 +49,9 @@ class TcxTrainingCenterDatabase implements TcxSerializable {
     });
 
     List<XmlElement> children = [];
+    if(author != null){
+      children.add(author!.toXmlElement(XmlName(authorXmlTag)));
+    }
     // if(folders != null){
     //   children.add(folders!.toXmlElement(XmlName(foldersXmlTag)));
     // }

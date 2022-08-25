@@ -5,17 +5,22 @@ import 'tcx_abstract_source.dart';
 import 'tcx_activity_lap.dart';
 import 'tcx_sport.dart';
 
+/// Represents a sportive activity.
 class TcxActivity implements TcxSerializable {
   // Attributes
   static const String sportXmlAttribute = "Sport";
+  /// The type of sport practiced. This field is required by the TCX schema definition.
   late TcxSport sport;
 
   // Children
   static const String idXmlTag = "Id";
+  /// A unique datetime identifier for this activity. This field is required by the TCX schema definition.
   late DateTime id;
   static const String lapXmlTag = "Lap";
+  /// The list of laps during this activity. This field is required not to be empty by the TCX schema definition.
   late List<TcxActivityLap> lap = []; // Cannot be empty
   static const String notesXmlTag = "Notes";
+  /// Notes about this activity. This field is not required by the TCX schema definition.
   String? notes;
   static const String trainingXmlTag = "Training";
   //TcxTraining? training; // TODO
@@ -25,14 +30,16 @@ class TcxActivity implements TcxSerializable {
   //Extensions? extensions; //TODO
 
   TcxActivity({
-    required this.sport,
-    required this.id,
-    required this.lap,
+    TcxSport? sport,
+    DateTime? id,
+    List<TcxActivityLap>? lap,
     this.notes,
     //this.training,
     this.creator,
     //this.extensions,
-  });
+  })  : sport = sport ?? TcxSports.other,
+        id = id ?? DateTime.fromMillisecondsSinceEpoch(0),
+        lap = lap ?? [];
 
   @override
   XmlElement toXmlElement(XmlName name) {
@@ -65,10 +72,10 @@ class TcxActivity implements TcxSerializable {
   TcxActivity.fromXmlElement(XmlElement xmlElement) {
     bool error = false;
 
-    if(xmlElement.attributes.length != 1 || xmlElement.attributes.first.name.local != sportXmlAttribute){
+    if (xmlElement.attributes.length != 1 ||
+        xmlElement.attributes.first.name.local != sportXmlAttribute) {
       error = true;
-    }
-    else{
+    } else {
       sport = xmlElement.attributes.first.value;
     }
 
@@ -89,7 +96,7 @@ class TcxActivity implements TcxSerializable {
         case trainingXmlTag:
           break;
         case creatorXmlTag:
-          creator =TcxAbstractSource.fromXmlElement(child);
+          creator = TcxAbstractSource.fromXmlElement(child);
           break;
         case extensionsXmlTag:
           break;

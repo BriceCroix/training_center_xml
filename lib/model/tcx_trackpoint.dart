@@ -5,34 +5,41 @@ import 'package:training_center_xml/model/tcx_serializable.dart';
 import 'package:training_center_xml/model/tcx_cadence_value.dart';
 import 'package:xml/xml.dart';
 
+/// Represents a trackpoint through which user passed during a sport session.
 class TcxTrackpoint implements TcxSerializable {
   static const String timeXmlTag = "Time";
+  /// Timestamp of this trackpoint. This field is required by the TCX schema definition.
   late DateTime time;
 
   static const String positionXmlTag = "Position";
+  /// Position on a map of this trackpoint. This field is not required by the TCX schema definition.
   TcxPosition? position;
   static const String altitudeMetersXmlTag = "AltitudeMeters";
+  /// Altitude in meters of this trackpoint. This field is not required by the TCX schema definition.
   double? altitudeMeters;
   static const String distanceMetersXmlTag = "DistanceMeters";
+  /// Distance in meters between starting point and this trackpoint. This field is not required by the TCX schema definition.
   double? distanceMeters;
   static const String heartRateBeatsPerMinuteXmlTag = "HeartRateBpm";
+  /// HeartBeat Frequency of user at this trackpoint. This field is not required by the TCX schema definition.
   TcxHeartRateInBeatsPerMinute? heartRateBeatsPerMinute;
   static const String cadenceXmlTag = "Cadence";
+  /// Cadence of user at this trackpoint. This field is not required by the TCX schema definition.
   TcxCadenceValue? cadence;
   static const String sensorStateXmlTag = "SensorState";
+  /// State of sensor at this trackpoint. This field is not required by the TCX schema definition.
   TcxSensorState? sensorState;
   static const String extensionsXmlTag = "Extensions";
-
   //TcxExtension? extensions; // TODO
 
   TcxTrackpoint(
-      {required this.time,
+      {DateTime? time,
       this.position,
       this.altitudeMeters,
       this.distanceMeters,
       this.heartRateBeatsPerMinute,
       this.cadence,
-      this.sensorState});
+      this.sensorState}) : time = time ?? DateTime(0);
 
   @override
   XmlElement toXmlElement(XmlName name) {

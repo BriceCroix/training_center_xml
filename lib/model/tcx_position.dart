@@ -3,13 +3,20 @@ import 'package:xml/xml.dart';
 import 'tcx_degrees_latitude.dart';
 import 'tcx_degrees_longitude.dart';
 
+/// Represents a position on a map.
 class TcxPosition implements TcxSerializable {
   static const latitudeDegreesXmlTag = "LatitudeDegrees";
+  /// Latitude coordinate of this position. This field is required by the TCX schema definition.
   late TcxDegreesLatitude latitudeDegrees;
   static const longitudeDegreesXmlTag = "LongitudeDegrees";
+  /// Longitude coordinate of this position. This field is required by the TCX schema definition.
   late TcxDegreesLongitude longitudeDegrees;
 
-  TcxPosition({required this.latitudeDegrees, required this.longitudeDegrees});
+  TcxPosition(
+      {TcxDegreesLatitude? latitudeDegrees,
+      TcxDegreesLongitude? longitudeDegrees})
+      : latitudeDegrees = latitudeDegrees ?? 0,
+        longitudeDegrees = longitudeDegrees ?? 0;
 
   @override
   XmlElement toXmlElement(XmlName name) {

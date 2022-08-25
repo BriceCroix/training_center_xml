@@ -3,16 +3,20 @@ import 'package:xml/xml.dart';
 
 import 'tcx_activity.dart';
 
+/// Represents a list of activities.
 class TcxActivityList implements TcxSerializable {
   static const String activityXmlTag = "Activity";
+  /// Actual list of activities, this field is not required by the TCX schema definition.
   List<TcxActivity> activity = []; // Can be empty
   static const String multiSportSessionXmlTag = "MultiSportSession";
   //List<TcxMultiSportSession> multiSportSession; // Can be empty //TODO
 
   TcxActivityList({
-    this.activity = const [],
-    //this.multiSportSession = const [],
-  });
+    List<TcxActivity>? activity,
+    //List<TcxMultiSportSession>? multiSportSession,
+  }) : activity = activity ?? []
+  //multiSportSession = multiSportSession ?? []
+  ;
 
   @override
   XmlElement toXmlElement(XmlName name) {

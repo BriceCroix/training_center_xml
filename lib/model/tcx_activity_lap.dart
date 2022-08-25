@@ -9,49 +9,68 @@ import 'tcx_cadence_value.dart';
 class TcxActivityLap implements TcxSerializable {
   // Attributes
   static const String startTimeXmlAttribute = "StartTime";
+  /// Datetime of the beginning of this lap. This attribute is required by the TCX schema definition.
   late DateTime startTime;
 
   // Children
   static const String totalTimeSecondsXmlTag = "TotalTimeSeconds";
+  /// Total duration of this lap in seconds. This field is required by the TCX schema definition.
   late double totalTimeSeconds;
   static const String distanceMetersXmlTag = "DistanceMeters";
+  /// Total distance of this lap in meters. This field is required by the TCX schema definition.
   late double distanceMeters;
   static const String maximumSpeedMetersPerSecondXmlTag = "MaximumSpeed";
+  /// Maximum speed reached during this lap in meters per second. This field is not required by the TCX schema definition.
   double? maximumSpeedMetersPerSecond;
   static const String caloriesXmlTag = "Calories";
+  /// Number of calories spent during this lap. This field is required by the TCX schema definition.
   late int calories;
   static const String averageHeartRateBeatsPerMinuteXmlTag =
       "AverageHeartRateBpm";
+  /// Average heartbeat frequency during this lap. This field is not required by the TCX schema definition.
   TcxHeartRateInBeatsPerMinute? averageHeartRateBeatsPerMinute;
   static const String maximumHeartRateBeatsPerMinuteXmlTag =
       "MaximumHeartRateBpm";
+  /// Maximum heartbeat frequency reached during this lap. This field is not required by the TCX schema definition.
   TcxHeartRateInBeatsPerMinute? maximumHeartRateBeatsPerMinute;
   static const String intensityXmlTag = "Intensity";
+  /// Intensity of this lap. This field is required by the TCX schema definition.
   late TcxIntensity intensity;
   static const String cadenceXmlTag = "Cadence";
+  /// Cadence of this lap. This field is not required by the TCX schema definition.
   TcxCadenceValue? cadence;
   static const String triggerMethodXmlTag = "TriggerMethod";
+  /// Method used to trigger this lap. This field is required by the TCX schema definition.
   late TcxTriggerMethod triggerMethod;
   static const String trackXmlTag = "Track";
+  /// List of tracks used during this lap. This field is not required by the TCX schema definition.
   List<TcxTrack> track = []; // Can be empty
   static const String notesXmlTag = "Notes";
+  /// Notes about this lap. This field is not required by the TCX schema definition.
   String? notes;
   static const String extensionsXmlTag = "Extensions";
   //Extensions? extensions;//TODO
 
   TcxActivityLap(
-      {required this.startTime,
-      required this.totalTimeSeconds,
-      required this.distanceMeters,
+      {DateTime? startTime,
+      double? totalTimeSeconds,
+      double? distanceMeters,
       this.maximumSpeedMetersPerSecond,
-      required this.calories,
+      int? calories,
       this.averageHeartRateBeatsPerMinute,
       this.maximumHeartRateBeatsPerMinute,
-      required this.intensity,
+      TcxIntensity? intensity,
       this.cadence,
-      required this.triggerMethod,
-      this.track = const [],
-      this.notes});
+      TcxTriggerMethod? triggerMethod,
+      List<TcxTrack>? track,
+      this.notes})
+      : startTime = startTime ?? DateTime(0),
+        totalTimeSeconds = totalTimeSeconds ?? 0,
+        distanceMeters = distanceMeters ?? 0,
+        calories = calories ?? 0,
+        intensity = intensity ?? TcxIntensities.active,
+        triggerMethod = TcxTriggerMethods.manual,
+        track = track ?? [];
 
   @override
   XmlElement toXmlElement(XmlName name) {
@@ -100,10 +119,10 @@ class TcxActivityLap implements TcxSerializable {
   TcxActivityLap.fromXmlElement(XmlElement xmlElement) {
     bool error = false;
 
-    if(xmlElement.attributes.length != 1 || xmlElement.attributes.first.name.local != startTimeXmlAttribute){
+    if (xmlElement.attributes.length != 1 ||
+        xmlElement.attributes.first.name.local != startTimeXmlAttribute) {
       error = true;
-    }
-    else{
+    } else {
       startTime = DateTime.parse(xmlElement.attributes.first.value);
     }
 

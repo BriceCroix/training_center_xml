@@ -1,3 +1,4 @@
+/// Represents all valid values for TcxTriggerMethod.
 abstract class TcxTriggerMethods{
   static const String manual = "Manual";
   static const String distance = "Distance";
@@ -6,5 +7,5 @@ abstract class TcxTriggerMethods{
   static const String heartRate = "HeartRate";
   static const List<String> values = [manual, distance, location, time, heartRate];
 }
-/// Only TcxTriggerMethods values are valid.
+/// Represents a trigger method used during a sport session.
 typedef TcxTriggerMethod = String;

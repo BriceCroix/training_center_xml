@@ -9,5 +9,8 @@ doc/api/
 *.iws
 .idea/
 
+# fvm
+.fvm/flutter_sdk
+
 # Mac
 .DS_Store

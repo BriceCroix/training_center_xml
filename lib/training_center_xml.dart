@@ -1,17 +1,1 @@
 library training_center_xml;
-export 'model/tcx_abstract_source.dart';
-export 'model/tcx_activity.dart';
-export 'model/tcx_activity_lap.dart';
-export 'model/tcx_activity_list.dart';
-export 'model/tcx_cadence_value.dart';
-export 'model/tcx_degrees_latitude.dart';
-export 'model/tcx_degrees_longitude.dart';
-export 'model/tcx_heart_rate_in_beats_per_minute.dart';
-export 'model/tcx_intensity.dart';
-export 'model/tcx_position.dart';
-export 'model/tcx_sensor_state.dart';
-export 'model/tcx_sport.dart';
-export 'model/tcx_track.dart';
-export 'model/tcx_trackpoint.dart';
-export 'model/tcx_training_center_database.dart';
-export 'model/tcx_trigger_method.dart';

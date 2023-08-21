@@ -1,1 +1,19 @@
 library training_center_xml;
+
+export 'models/abstract_source.dart';
+export 'models/activity.dart';
+export 'models/activity_lap.dart';
+export 'models/activity_list.dart';
+export 'models/cadence_value.dart';
+export 'models/extensions.dart';
+export 'models/extensions.dart';
+export 'models/extensions/activity_extension_v2/activity_lap_extension.dart';
+export 'models/extensions/activity_extension_v2/activity_trackpoint_extension.dart';
+export 'models/extensions/activity_extension_v2/cadence_sensor_type.dart';
+export 'models/heart_rate_in_beats_per_minute.dart';
+export 'models/intensity.dart';
+export 'models/sport.dart';
+export 'models/track.dart';
+export 'models/trackpoint.dart';
+export 'models/training_center_database.dart';
+export 'models/trigger_method.dart';

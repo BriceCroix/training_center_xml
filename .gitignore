@@ -12,5 +12,9 @@ doc/api/
 # fvm
 .fvm/flutter_sdk
 
+# generated files
+*.g.dart
+*.freezed.dart
+
 # Mac
 .DS_Store

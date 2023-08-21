@@ -1,35 +1,35 @@
 import 'package:training_center_xml/models/activity.dart';
-import 'package:training_center_xml/models/multi_sport_session.dart';
+import 'package:training_center_xml/models/activity_lap.dart';
 import 'package:training_center_xml/namespace.dart';
 import 'package:xml/xml.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
-part 'activity_list.g.dart';
+part 'next_sport.g.dart';
 
 @annotation.XmlRootElement()
 @annotation.XmlSerializable()
-class TcxActivityList {
-  factory TcxActivityList.fromXmlElement(XmlElement element) =>
-      _$TcxActivityListFromXmlElement(element);
+class TcxNextSport {
+  factory TcxNextSport.fromXmlElement(XmlElement element) =>
+      _$TcxNextSportFromXmlElement(element);
 
-  TcxActivityList({
-    this.activity,
-    this.multiSportSession,
+  TcxNextSport({
+    required this.activity,
+    this.transition,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement()
-  List<TcxActivity>? activity;
+  TcxActivityLap? transition;
 
   @annotation.XmlElement()
-  List<TcxMultiSportSession>? multiSportSession;
+  TcxActivity activity;
 
   void buildXmlChildren(
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxActivityListBuildXmlChildren(
+    _$TcxNextSportBuildXmlChildren(
       this,
       builder,
       namespaces: namespaces,
@@ -40,7 +40,7 @@ class TcxActivityList {
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxActivityListBuildXmlElement(
+    _$TcxNextSportBuildXmlElement(
       this,
       builder,
       namespaces: namespaces,
@@ -50,7 +50,7 @@ class TcxActivityList {
   List<XmlAttribute> toXmlAttributes({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxActivityListToXmlAttributes(
+    return _$TcxNextSportToXmlAttributes(
       this,
       namespaces: namespaces,
     );
@@ -59,7 +59,7 @@ class TcxActivityList {
   List<XmlNode> toXmlChildren({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxActivityListToXmlChildren(
+    return _$TcxNextSportToXmlChildren(
       this,
       namespaces: namespaces,
     );
@@ -68,7 +68,7 @@ class TcxActivityList {
   XmlElement toXmlElement({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxActivityListToXmlElement(
+    return _$TcxNextSportToXmlElement(
       this,
       namespaces: namespaces,
     );

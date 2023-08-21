@@ -1,44 +1,48 @@
-import 'package:training_center_xml/models/abstract_source.dart';
-import 'package:training_center_xml/models/activity_list.dart';
-import 'package:training_center_xml/models/course_list.dart';
+import 'package:training_center_xml/models/course_point_name.dart';
+import 'package:training_center_xml/models/course_point_type.dart';
 import 'package:training_center_xml/models/extensions.dart';
+import 'package:training_center_xml/models/position.dart';
 import 'package:training_center_xml/namespace.dart';
 import 'package:xml/xml.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
-part 'training_center_database.g.dart';
+part 'course_point.g.dart';
 
 @annotation.XmlRootElement()
 @annotation.XmlSerializable()
-class TcxTrainingCenterDatabase {
-  factory TcxTrainingCenterDatabase.fromXmlElement(XmlElement element) =>
-      _$TcxTrainingCenterDatabaseFromXmlElement(element);
+class TcxCoursePoint {
+  factory TcxCoursePoint.fromXmlElement(XmlElement element) =>
+      _$TcxCoursePointFromXmlElement(element);
 
-  TcxTrainingCenterDatabase({
+  TcxCoursePoint({
+    required this.name,
+    required this.time,
+    required this.position,
+    required this.pointType,
+    this.altitudeMeters,
     this.extensions,
-    this.activities,
-    this.author,
-    this.courses,
-    //this.folders,
-    //this.workouts,
+    this.notes,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  //@annotation.XmlElement()
-  //TcxFolders? folders;
+  @annotation.XmlElement()
+  TcxCoursePointName name;
 
   @annotation.XmlElement()
-  TcxActivityList? activities;
-
-  //@annotation.XmlElement()
-  //TcxWorkoutList? workouts;
+  DateTime time;
 
   @annotation.XmlElement()
-  TcxCourseList? courses;
+  TcxPosition position;
 
   @annotation.XmlElement()
-  TcxAbstractSource? author;
+  double? altitudeMeters;
+
+  @annotation.XmlElement()
+  TcxCoursePointType pointType;
+
+  @annotation.XmlElement()
+  String? notes;
 
   @annotation.XmlElement()
   TcxExtensions? extensions;
@@ -47,7 +51,7 @@ class TcxTrainingCenterDatabase {
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxTrainingCenterDatabaseBuildXmlChildren(
+    _$TcxCoursePointBuildXmlChildren(
       this,
       builder,
       namespaces: namespaces,
@@ -58,7 +62,7 @@ class TcxTrainingCenterDatabase {
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxTrainingCenterDatabaseBuildXmlElement(
+    _$TcxCoursePointBuildXmlElement(
       this,
       builder,
       namespaces: namespaces,
@@ -68,7 +72,7 @@ class TcxTrainingCenterDatabase {
   List<XmlAttribute> toXmlAttributes({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlAttributes(
+    return _$TcxCoursePointToXmlAttributes(
       this,
       namespaces: namespaces,
     );
@@ -77,7 +81,7 @@ class TcxTrainingCenterDatabase {
   List<XmlNode> toXmlChildren({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlChildren(
+    return _$TcxCoursePointToXmlChildren(
       this,
       namespaces: namespaces,
     );
@@ -86,7 +90,7 @@ class TcxTrainingCenterDatabase {
   XmlElement toXmlElement({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlElement(
+    return _$TcxCoursePointToXmlElement(
       this,
       namespaces: namespaces,
     );

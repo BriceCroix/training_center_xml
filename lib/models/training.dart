@@ -1,58 +1,39 @@
-import 'package:training_center_xml/models/abstract_source.dart';
-import 'package:training_center_xml/models/activity_lap.dart';
-import 'package:training_center_xml/models/extensions.dart';
-import 'package:training_center_xml/models/sport.dart';
-import 'package:training_center_xml/models/training.dart';
+import 'package:training_center_xml/models/plan.dart';
+import 'package:training_center_xml/models/quick_workout.dart';
 import 'package:training_center_xml/namespace.dart';
 import 'package:xml/xml.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
-part 'activity.g.dart';
+part 'training.g.dart';
 
 @annotation.XmlRootElement()
 @annotation.XmlSerializable()
-class TcxActivity {
-  factory TcxActivity.fromXmlElement(XmlElement element) =>
-      _$TcxActivityFromXmlElement(element);
+class TcxTraining {
+  factory TcxTraining.fromXmlElement(XmlElement element) =>
+      _$TcxTrainingFromXmlElement(element);
 
-  TcxActivity({
-    required this.id,
-    required this.lap,
-    required this.sport,
-    this.extensions,
-    this.creator,
-    this.notes,
-    this.training,
+  TcxTraining({
+    required this.virtualPartner,
+    this.plan,
+    this.quickWorkoutResults,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement()
-  DateTime id;
+  TcxQuickWorkout? quickWorkoutResults;
 
   @annotation.XmlElement()
-  List<TcxActivityLap> lap;
-
-  @annotation.XmlElement()
-  String? notes;
-
-  @annotation.XmlElement()
-  TcxTraining? training;
-
-  @annotation.XmlElement()
-  TcxAbstractSource? creator;
-
-  @annotation.XmlElement()
-  TcxExtensions? extensions;
+  TcxPlan? plan;
 
   @annotation.XmlAttribute()
-  TcxSport sport;
+  bool virtualPartner;
 
   void buildXmlChildren(
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxActivityBuildXmlChildren(
+    _$TcxTrainingBuildXmlChildren(
       this,
       builder,
       namespaces: namespaces,
@@ -63,7 +44,7 @@ class TcxActivity {
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxActivityBuildXmlElement(
+    _$TcxTrainingBuildXmlElement(
       this,
       builder,
       namespaces: namespaces,
@@ -73,7 +54,7 @@ class TcxActivity {
   List<XmlAttribute> toXmlAttributes({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxActivityToXmlAttributes(
+    return _$TcxTrainingToXmlAttributes(
       this,
       namespaces: namespaces,
     );
@@ -82,7 +63,7 @@ class TcxActivity {
   List<XmlNode> toXmlChildren({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxActivityToXmlChildren(
+    return _$TcxTrainingToXmlChildren(
       this,
       namespaces: namespaces,
     );
@@ -91,7 +72,7 @@ class TcxActivity {
   XmlElement toXmlElement({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxActivityToXmlElement(
+    return _$TcxTrainingToXmlElement(
       this,
       namespaces: namespaces,
     );

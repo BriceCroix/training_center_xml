@@ -12,8 +12,12 @@ export 'models/extensions/activity_extension_v2/activity_trackpoint_extension.da
 export 'models/extensions/activity_extension_v2/cadence_sensor_type.dart';
 export 'models/heart_rate_in_beats_per_minute.dart';
 export 'models/intensity.dart';
+export 'models/plan.dart';
+export 'models/quick_workout.dart';
 export 'models/sport.dart';
 export 'models/track.dart';
 export 'models/trackpoint.dart';
+export 'models/training.dart';
 export 'models/training_center_database.dart';
+export 'models/training_type.dart';
 export 'models/trigger_method.dart';

@@ -16,6 +16,7 @@ class TcxWorkouts {
     required this.running,
     required this.biking,
     required this.other,
+    this.extensions,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;

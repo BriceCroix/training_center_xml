@@ -19,6 +19,7 @@ class TcxHistoryFolder {
     this.notes,
     this.activityRef,
     this.folder,
+    this.week,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;

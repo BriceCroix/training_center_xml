@@ -19,6 +19,7 @@ class TcxMultiSportFolder {
     this.notes,
     this.multisportActivityRef,
     this.folder,
+    this.week,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;

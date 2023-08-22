@@ -14,6 +14,7 @@ class TcxCourses {
 
   TcxCourses({
     required this.courseFolder,
+    this.extensions,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;

@@ -17,7 +17,7 @@ class TcxExtensions {
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   // @annotation.XmlElement()
-  // List? extension;
+  // List<TcxExtension>? extension;
 
   void buildXmlChildren(
     XmlBuilder builder, {

@@ -1,54 +1,60 @@
 import 'package:training_center_xml/models/abstract_source.dart';
-import 'package:training_center_xml/models/activity_list.dart';
-import 'package:training_center_xml/models/course_list.dart';
+import 'package:training_center_xml/models/abstract_step.dart';
 import 'package:training_center_xml/models/extensions.dart';
-import 'package:training_center_xml/models/workout_list.dart';
+import 'package:training_center_xml/models/sport.dart';
 import 'package:training_center_xml/namespace.dart';
 import 'package:xml/xml.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
-part 'training_center_database.g.dart';
+part 'workout.g.dart';
 
 @annotation.XmlRootElement()
 @annotation.XmlSerializable()
-class TcxTrainingCenterDatabase {
-  factory TcxTrainingCenterDatabase.fromXmlElement(XmlElement element) =>
-      _$TcxTrainingCenterDatabaseFromXmlElement(element);
+class TcxWorkout {
+  factory TcxWorkout.fromXmlElement(XmlElement element) =>
+      _$TcxWorkoutFromXmlElement(element);
 
-  TcxTrainingCenterDatabase({
+  TcxWorkout({
+    required this.name,
+    required this.step,
+    required this.sport,
+    this.scheduledOn,
     this.extensions,
-    this.activities,
-    this.author,
-    this.courses,
-    //this.folders,
-    this.workouts,
+    this.notes,
+    this.creator,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  //@annotation.XmlElement()
-  //TcxFolders? folders;
+  @annotation.XmlElement()
+  String name;
+
+  /// Every stepId within a workout should be unique, as a consequence a maximum
+  /// of 20 steps is allowed in a workout.
+  @annotation.XmlElement()
+  List<TcxAbstractStep> step;
+
+  // Should be List<Date>?
+  @annotation.XmlElement()
+  List<DateTime>? scheduledOn;
 
   @annotation.XmlElement()
-  TcxActivityList? activities;
+  String? notes;
 
   @annotation.XmlElement()
-  TcxWorkoutList? workouts;
-
-  @annotation.XmlElement()
-  TcxCourseList? courses;
-
-  @annotation.XmlElement()
-  TcxAbstractSource? author;
+  TcxAbstractSource? creator;
 
   @annotation.XmlElement()
   TcxExtensions? extensions;
+
+  @annotation.XmlAttribute()
+  TcxSport sport;
 
   void buildXmlChildren(
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxTrainingCenterDatabaseBuildXmlChildren(
+    _$TcxWorkoutBuildXmlChildren(
       this,
       builder,
       namespaces: namespaces,
@@ -59,7 +65,7 @@ class TcxTrainingCenterDatabase {
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxTrainingCenterDatabaseBuildXmlElement(
+    _$TcxWorkoutBuildXmlElement(
       this,
       builder,
       namespaces: namespaces,
@@ -69,7 +75,7 @@ class TcxTrainingCenterDatabase {
   List<XmlAttribute> toXmlAttributes({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlAttributes(
+    return _$TcxWorkoutToXmlAttributes(
       this,
       namespaces: namespaces,
     );
@@ -78,7 +84,7 @@ class TcxTrainingCenterDatabase {
   List<XmlNode> toXmlChildren({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlChildren(
+    return _$TcxWorkoutToXmlChildren(
       this,
       namespaces: namespaces,
     );
@@ -87,7 +93,7 @@ class TcxTrainingCenterDatabase {
   XmlElement toXmlElement({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlElement(
+    return _$TcxWorkoutToXmlElement(
       this,
       namespaces: namespaces,
     );

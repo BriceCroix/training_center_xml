@@ -1,6 +1,7 @@
 library training_center_xml;
 
 export 'models/abstract_source.dart';
+export 'models/abstract_step.dart';
 export 'models/activity.dart';
 export 'models/activity_lap.dart';
 export 'models/activity_list.dart';
@@ -24,9 +25,12 @@ export 'models/next_sport.dart';
 export 'models/plan.dart';
 export 'models/quick_workout.dart';
 export 'models/sport.dart';
+export 'models/step_id.dart';
 export 'models/track.dart';
 export 'models/trackpoint.dart';
 export 'models/training.dart';
 export 'models/training_center_database.dart';
 export 'models/training_type.dart';
 export 'models/trigger_method.dart';
+export 'models/workout.dart';
+export 'models/workout_list.dart';

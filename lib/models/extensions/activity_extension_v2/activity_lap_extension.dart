@@ -9,7 +9,7 @@ part 'activity_lap_extension.g.dart';
 
 @annotation.XmlRootElement(name: 'LX')
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
-class TcxActivityLapExtension extends TcxExtension {
+class TcxActivityLapExtension implements TcxExtension {
   factory TcxActivityLapExtension.fromXmlElement(XmlElement element) =>
       _$TcxActivityLapExtensionFromXmlElement(element);
 

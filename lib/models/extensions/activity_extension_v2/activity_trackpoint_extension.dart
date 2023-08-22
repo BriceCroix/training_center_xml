@@ -10,7 +10,7 @@ part 'activity_trackpoint_extension.g.dart';
 
 @annotation.XmlRootElement(name: 'TPX')
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
-class TcxActivityTrackpointExtension extends TcxExtension {
+class TcxActivityTrackpointExtension implements TcxExtension {
   factory TcxActivityTrackpointExtension.fromXmlElement(XmlElement element) =>
       _$TcxActivityTrackpointExtensionFromXmlElement(element);
 

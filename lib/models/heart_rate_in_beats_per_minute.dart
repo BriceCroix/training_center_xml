@@ -5,7 +5,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'heart_rate_in_beats_per_minute.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxHeartRateInBeatsPerMinute {
   factory TcxHeartRateInBeatsPerMinute.fromXmlElement(XmlElement element) =>
       _$TcxHeartRateInBeatsPerMinuteFromXmlElement(element);
@@ -16,7 +16,7 @@ class TcxHeartRateInBeatsPerMinute {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   int value;
 
   void buildXmlChildren(

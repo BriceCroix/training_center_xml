@@ -5,7 +5,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'activity_reference.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxActivityReference {
   factory TcxActivityReference.fromXmlElement(XmlElement element) =>
       _$TcxActivityReferenceFromXmlElement(element);
@@ -16,7 +16,7 @@ class TcxActivityReference {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   DateTime id;
 
   void buildXmlChildren(

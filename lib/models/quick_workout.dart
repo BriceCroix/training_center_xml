@@ -5,7 +5,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'quick_workout.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxQuickWorkout {
   factory TcxQuickWorkout.fromXmlElement(XmlElement element) =>
       _$TcxQuickWorkoutFromXmlElement(element);
@@ -17,10 +17,10 @@ class TcxQuickWorkout {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double totalTimeSeconds;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double distanceMeters;
 
   void buildXmlChildren(

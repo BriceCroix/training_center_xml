@@ -7,7 +7,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'plan.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxPlan {
   factory TcxPlan.fromXmlElement(XmlElement element) =>
       _$TcxPlanFromXmlElement(element);
@@ -21,10 +21,10 @@ class TcxPlan {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   String? name;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
   @annotation.XmlAttribute()

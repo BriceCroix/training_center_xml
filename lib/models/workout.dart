@@ -9,7 +9,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'workout.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxWorkout {
   factory TcxWorkout.fromXmlElement(XmlElement element) =>
       _$TcxWorkoutFromXmlElement(element);
@@ -26,25 +26,25 @@ class TcxWorkout {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   String name;
 
   /// Every stepId within a workout should be unique, as a consequence a maximum
   /// of 20 steps is allowed in a workout.
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxAbstractStep> step;
 
   // Should be List<Date>?
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<DateTime>? scheduledOn;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   String? notes;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxAbstractSource? creator;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
   @annotation.XmlAttribute()

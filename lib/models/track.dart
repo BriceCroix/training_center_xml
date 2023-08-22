@@ -6,7 +6,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'track.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxTrack {
   factory TcxTrack.fromXmlElement(XmlElement element) =>
       _$TcxTrackFromXmlElement(element);
@@ -17,7 +17,7 @@ class TcxTrack {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxTrackpoint> trackpoint;
 
   void buildXmlChildren(

@@ -6,7 +6,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'course_list.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxCourseList {
   factory TcxCourseList.fromXmlElement(XmlElement element) =>
       _$TcxCourseListFromXmlElement(element);
@@ -17,7 +17,7 @@ class TcxCourseList {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxCourse>? course;
 
   void buildXmlChildren(

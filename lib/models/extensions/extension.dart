@@ -1,9 +1,12 @@
 import 'package:xml/xml.dart';
-import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
-part 'extension.g.dart';
+// TODO : manually add method
+//  TcxExtension _$TcxExtensionFromXmlElement(XmlElement element) {
+//   return TcxExtension();
+// }
+// That actually returns a subtype of TcxExtension, it could be generated,
+// knowing all classes annotated with @XmlSerializable
 
-@annotation.XmlSerializable()
 abstract class TcxExtension {
   void buildXmlChildren(
     XmlBuilder builder, {

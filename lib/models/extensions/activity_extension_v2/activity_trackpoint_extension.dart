@@ -9,7 +9,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'activity_trackpoint_extension.g.dart';
 
 @annotation.XmlRootElement(name: 'TPX')
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxActivityTrackpointExtension extends TcxExtension {
   factory TcxActivityTrackpointExtension.fromXmlElement(XmlElement element) =>
       _$TcxActivityTrackpointExtensionFromXmlElement(element);
@@ -24,16 +24,16 @@ class TcxActivityTrackpointExtension extends TcxExtension {
 
   static const String namespace = namespaceActivityExtensionV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double? speed;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxCadenceValue? runCadence;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   int? watts;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
   @annotation.XmlAttribute()

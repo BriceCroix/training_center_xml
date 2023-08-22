@@ -5,18 +5,20 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'extensions.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxExtensions {
   factory TcxExtensions.fromXmlElement(XmlElement element) =>
       _$TcxExtensionsFromXmlElement(element);
 
-  // TcxExtensions({
-  //   this.extension,
-  // });
+  TcxExtensions(
+      // {
+      //   this.extension,
+      // }
+      );
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  // @annotation.XmlElement()
+  // @annotation.XmlElement(includeIfNull: false)
   // List<TcxExtension>? extension;
 
   void buildXmlChildren(

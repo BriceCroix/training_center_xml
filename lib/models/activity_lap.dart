@@ -11,7 +11,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'activity_lap.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxActivityLap {
   factory TcxActivityLap.fromXmlElement(XmlElement element) =>
       _$TcxActivityLapFromXmlElement(element);
@@ -34,40 +34,40 @@ class TcxActivityLap {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double totalTimeSeconds;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double distanceMeters;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double? maximumSpeed;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   int calories;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxHeartRateInBeatsPerMinute? averageHeartRateBpm;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxHeartRateInBeatsPerMinute? maximumHeartRateBpm;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxIntensity intensity;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxCadenceValue? cadence;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxTriggerMethod triggerMethod;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxTrack>? track;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   String? notes;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
   @annotation.XmlAttribute()

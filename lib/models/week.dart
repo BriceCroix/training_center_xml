@@ -5,7 +5,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'week.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxWeek {
   factory TcxWeek.fromXmlElement(XmlElement element) =>
       _$TcxWeekFromXmlElement(element);
@@ -18,7 +18,7 @@ class TcxWeek {
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   /// The week is written out only if the notes are present.
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   String? notes;
 
   // Should be Date, not DateTime

@@ -8,7 +8,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'history_folder.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxHistoryFolder {
   factory TcxHistoryFolder.fromXmlElement(XmlElement element) =>
       _$TcxHistoryFolderFromXmlElement(element);
@@ -24,19 +24,19 @@ class TcxHistoryFolder {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxHistoryFolder>? folder;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxActivityReference>? activityRef;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxWeek>? week;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   String? notes;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
   @annotation.XmlAttribute()

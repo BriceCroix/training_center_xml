@@ -7,7 +7,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'activity_list.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxActivityList {
   factory TcxActivityList.fromXmlElement(XmlElement element) =>
       _$TcxActivityListFromXmlElement(element);
@@ -19,10 +19,10 @@ class TcxActivityList {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxActivity>? activity;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   List<TcxMultiSportSession>? multiSportSession;
 
   void buildXmlChildren(

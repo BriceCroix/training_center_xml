@@ -10,7 +10,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'trackpoint.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxTrackpoint {
   factory TcxTrackpoint.fromXmlElement(XmlElement element) =>
       _$TcxTrackpointFromXmlElement(element);
@@ -28,28 +28,28 @@ class TcxTrackpoint {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   DateTime time;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxPosition? position;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double? altitudeMeters;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double? distanceMeters;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxHeartRateInBeatsPerMinute? heartRateBpm;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxCadenceValue? cadence;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxSensorState? sensorState;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
   void buildXmlChildren(

@@ -8,7 +8,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'activity_lap_extension.g.dart';
 
 @annotation.XmlRootElement(name: 'LX')
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxActivityLapExtension extends TcxExtension {
   factory TcxActivityLapExtension.fromXmlElement(XmlElement element) =>
       _$TcxActivityLapExtensionFromXmlElement(element);
@@ -26,29 +26,29 @@ class TcxActivityLapExtension extends TcxExtension {
 
   static const String namespace = namespaceActivityExtensionV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double? avgSpeed;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxCadenceValue? maxBikeCadence;
 
   // AvgBikeCadence is stored in the TC2 ActivityLap_t Cadence field.
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxCadenceValue? avgRunCadence;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxCadenceValue? maxRunCadence;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   int? steps;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   int? avgWatts;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   int? maxWatts;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
   @override

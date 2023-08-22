@@ -9,7 +9,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 part 'course_point.g.dart';
 
 @annotation.XmlRootElement()
-@annotation.XmlSerializable()
+@annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxCoursePoint {
   factory TcxCoursePoint.fromXmlElement(XmlElement element) =>
       _$TcxCoursePointFromXmlElement(element);
@@ -26,25 +26,25 @@ class TcxCoursePoint {
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxCoursePointName name;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   DateTime time;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxPosition position;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   double? altitudeMeters;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxCoursePointType pointType;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   String? notes;
 
-  @annotation.XmlElement()
+  @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
   void buildXmlChildren(

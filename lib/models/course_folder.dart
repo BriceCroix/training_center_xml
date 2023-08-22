@@ -1,55 +1,47 @@
-import 'package:training_center_xml/models/abstract_source.dart';
-import 'package:training_center_xml/models/activity_list.dart';
-import 'package:training_center_xml/models/course_list.dart';
 import 'package:training_center_xml/models/extensions.dart';
-import 'package:training_center_xml/models/folders.dart';
-import 'package:training_center_xml/models/workout_list.dart';
+import 'package:training_center_xml/models/name_key_reference.dart';
 import 'package:training_center_xml/namespace.dart';
 import 'package:xml/xml.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
-part 'training_center_database.g.dart';
+part 'course_folder.g.dart';
 
 @annotation.XmlRootElement()
 @annotation.XmlSerializable()
-class TcxTrainingCenterDatabase {
-  factory TcxTrainingCenterDatabase.fromXmlElement(XmlElement element) =>
-      _$TcxTrainingCenterDatabaseFromXmlElement(element);
+class TcxCourseFolder {
+  factory TcxCourseFolder.fromXmlElement(XmlElement element) =>
+      _$TcxCourseFolderFromXmlElement(element);
 
-  TcxTrainingCenterDatabase({
+  TcxCourseFolder({
+    required this.name,
     this.extensions,
-    this.activities,
-    this.author,
-    this.courses,
-    this.folders,
-    this.workouts,
+    this.notes,
+    this.courseNameRef,
+    this.folder,
   });
 
   static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement()
-  TcxFolders? folders;
+  List<TcxCourseFolder>? folder;
 
   @annotation.XmlElement()
-  TcxActivityList? activities;
+  List<TcxNameKeyReference>? courseNameRef;
 
   @annotation.XmlElement()
-  TcxWorkoutList? workouts;
-
-  @annotation.XmlElement()
-  TcxCourseList? courses;
-
-  @annotation.XmlElement()
-  TcxAbstractSource? author;
+  String? notes;
 
   @annotation.XmlElement()
   TcxExtensions? extensions;
+
+  @annotation.XmlAttribute()
+  String name;
 
   void buildXmlChildren(
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxTrainingCenterDatabaseBuildXmlChildren(
+    _$TcxCourseFolderBuildXmlChildren(
       this,
       builder,
       namespaces: namespaces,
@@ -60,7 +52,7 @@ class TcxTrainingCenterDatabase {
     XmlBuilder builder, {
     Map<String, String> namespaces = const {},
   }) {
-    _$TcxTrainingCenterDatabaseBuildXmlElement(
+    _$TcxCourseFolderBuildXmlElement(
       this,
       builder,
       namespaces: namespaces,
@@ -70,7 +62,7 @@ class TcxTrainingCenterDatabase {
   List<XmlAttribute> toXmlAttributes({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlAttributes(
+    return _$TcxCourseFolderToXmlAttributes(
       this,
       namespaces: namespaces,
     );
@@ -79,7 +71,7 @@ class TcxTrainingCenterDatabase {
   List<XmlNode> toXmlChildren({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlChildren(
+    return _$TcxCourseFolderToXmlChildren(
       this,
       namespaces: namespaces,
     );
@@ -88,7 +80,7 @@ class TcxTrainingCenterDatabase {
   XmlElement toXmlElement({
     Map<String, String?> namespaces = const {},
   }) {
-    return _$TcxTrainingCenterDatabaseToXmlElement(
+    return _$TcxCourseFolderToXmlElement(
       this,
       namespaces: namespaces,
     );

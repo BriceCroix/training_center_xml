@@ -1,66 +1,72 @@
-import 'dart:io';
-
 import 'package:test/test.dart';
 import 'package:training_center_xml/training_center_xml.dart';
 
 void main() {
   test('Create from scratch', () {
-    final tcx = TcxTrainingCenterDatabase(
-      activities: TcxActivityList(
-        activity: [
-          TcxActivity(
-            id: DateTime(2023, 08, 21, 18, 30),
-            lap: [
-              TcxActivityLap(
-                calories: 12,
-                distanceMeters: 150,
-                intensity: TcxIntensity.active,
-                startTime: DateTime(2023, 08, 21, 18, 30),
-                totalTimeSeconds: 120,
-                triggerMethod: TcxTriggerMethod.manual,
-                track: [
-                  TcxTrack(
-                    trackpoint: [
-                      TcxTrackpoint(
-                        time: DateTime(2023, 08, 21, 18, 30, 1),
-                        distanceMeters: 1,
-                        heartRateBpm: TcxHeartRateInBeatsPerMinute(value: 90),
-                        altitudeMeters: 56,
-                        position: TcxPosition(
-                          latitudeDegrees: 0.0,
-                          longitudeDegrees: 0.0,
-                        ),
-                      ),
-                      TcxTrackpoint(
-                        time: DateTime(2023, 08, 21, 18, 30, 31),
-                        distanceMeters: 10,
-                        heartRateBpm: TcxHeartRateInBeatsPerMinute(value: 100),
-                        altitudeMeters: 57,
-                        position: TcxPosition(
-                          latitudeDegrees: 0.1,
-                          longitudeDegrees: 0.2,
-                        ),
+    // Expect no throw
+    expect(
+      () {
+        final tcx = TcxTrainingCenterDatabase(
+          activities: TcxActivityList(
+            activity: [
+              TcxActivity(
+                id: DateTime(2023, 08, 21, 18, 30),
+                lap: [
+                  TcxActivityLap(
+                    calories: 12,
+                    distanceMeters: 150,
+                    intensity: TcxIntensity.active,
+                    startTime: DateTime(2023, 08, 21, 18, 30),
+                    totalTimeSeconds: 120,
+                    triggerMethod: TcxTriggerMethod.manual,
+                    track: [
+                      TcxTrack(
+                        trackpoint: [
+                          TcxTrackpoint(
+                            time: DateTime(2023, 08, 21, 18, 30, 1),
+                            distanceMeters: 1,
+                            heartRateBpm:
+                                TcxHeartRateInBeatsPerMinute(value: 90),
+                            altitudeMeters: 56,
+                            position: TcxPosition(
+                              latitudeDegrees: 0.0,
+                              longitudeDegrees: 0.0,
+                            ),
+                          ),
+                          TcxTrackpoint(
+                            time: DateTime(2023, 08, 21, 18, 30, 31),
+                            distanceMeters: 10,
+                            heartRateBpm:
+                                TcxHeartRateInBeatsPerMinute(value: 100),
+                            altitudeMeters: 57,
+                            position: TcxPosition(
+                              latitudeDegrees: 0.1,
+                              longitudeDegrees: 0.2,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
+                    extensions: TcxExtensions(
+                      activityLapExtension: [
+                        TcxActivityLapExtension(
+                          maxRunCadence: 12,
+                          avgSpeed: 40,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
-                extensions: TcxExtensions(
-                  activityLapExtension: [
-                    TcxActivityLapExtension(
-                      maxRunCadence: 12,
-                      avgSpeed: 40,
-                    ),
-                  ],
-                ),
+                sport: TcxSport.running,
               ),
             ],
-            sport: TcxSport.running,
           ),
-        ],
-      ),
+        );
+        //stdout.write(tcx.toXmlString(pretty: true));
+        tcx.toXmlString();
+      },
+      returnsNormally,
     );
-    stdout.write(tcx.toXmlString(pretty: true));
-    //expect(counter.value, 1);
   });
 
   test('Read and write back', () {

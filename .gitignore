@@ -9,5 +9,15 @@ doc/api/
 *.iws
 .idea/
 
+# fvm
+.fvm/flutter_sdk
+
+# generated files
+*.g.dart
+*.freezed.dart
+
 # Mac
 .DS_Store
+
+# Misc files
+*.tcx

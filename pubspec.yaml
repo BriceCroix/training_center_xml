@@ -1,21 +1,24 @@
 name: training_center_xml
 description: A flutter package to handle Garmin Training Center Xml files (.tcx).
-version: 0.0.1
+version: 0.0.0
 homepage: https://github.com/BriceCroix/training_center_xml
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: '>=3.0.5 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  xml: ^6.1.0
+  xml: ^6.3.0
+  xml_annotation: ^2.2.0
 
 dev_dependencies:
+  build_runner: ^2.4.6
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  test: ^1.24.1
+  xml_serializable: ^2.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -43,6 +43,7 @@ Certain fields are not mandatory in TCX files, the philosophy about these cases 
 - Schema expects 0 or more fields ? -> `List<TcxType>? field;`
 - Schema expects 1 or more fields ? -> `List<TcxType> field;`
 
+
 ### Read file
 
 ```dart
@@ -133,6 +134,7 @@ var newTcx = TcxTrainingCenterDatabase(
   );
 ```
 
+
 ## Additional information
 
 ### Bug report
@@ -154,6 +156,7 @@ possible to put any class in the fields of the class `TcxExtensions` yet, but th
 [this schema](https://www.garmin.com/xmlschemas/ActivityExtensionv2.xsd) are supported.
 If you know about a publicly available TCX extension which is not yet supported please file
 an issue !
+
 
 ## How to build
 

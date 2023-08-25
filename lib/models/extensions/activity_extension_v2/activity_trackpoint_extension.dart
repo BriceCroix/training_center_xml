@@ -34,8 +34,10 @@ class TcxActivityTrackpointExtension implements TcxExtension {
   @annotation.XmlElement(includeIfNull: false)
   TcxExtensions? extensions;
 
+  // This field is made nullable because, although the attribute is mandated by
+  // the schema definition, Strava seems not to include it.
   @annotation.XmlAttribute()
-  TcxCadenceSensorType cadenceSensor;
+  TcxCadenceSensorType? cadenceSensor;
 
   @override
   void buildXmlChildren(

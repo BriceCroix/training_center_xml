@@ -9,7 +9,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'trackpoint.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxTrackpoint {
   factory TcxTrackpoint.fromXmlElement(XmlElement element) =>
@@ -25,8 +25,6 @@ class TcxTrackpoint {
     this.heartRateBpm,
     this.position,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   DateTime time;

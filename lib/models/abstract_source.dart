@@ -4,7 +4,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'abstract_source.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxAbstractSource {
   factory TcxAbstractSource.fromXmlElement(XmlElement element) =>
@@ -13,8 +13,6 @@ class TcxAbstractSource {
   TcxAbstractSource({
     required this.name,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   String name;

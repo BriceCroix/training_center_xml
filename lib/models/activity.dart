@@ -9,7 +9,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'activity.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxActivity {
   factory TcxActivity.fromXmlElement(XmlElement element) =>
@@ -24,8 +24,6 @@ class TcxActivity {
     this.notes,
     this.training,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   DateTime id;

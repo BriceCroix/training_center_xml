@@ -6,7 +6,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'course_folder.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxCourseFolder {
   factory TcxCourseFolder.fromXmlElement(XmlElement element) =>
@@ -19,8 +19,6 @@ class TcxCourseFolder {
     this.courseNameRef,
     this.folder,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   List<TcxCourseFolder>? folder;

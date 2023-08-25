@@ -10,7 +10,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'activity_lap.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxActivityLap {
   factory TcxActivityLap.fromXmlElement(XmlElement element) =>
@@ -31,8 +31,6 @@ class TcxActivityLap {
     this.maximumSpeed,
     this.track,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   double totalTimeSeconds;

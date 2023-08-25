@@ -7,7 +7,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'activity_lap_extension.g.dart';
 
-@annotation.XmlRootElement(name: 'LX')
+@annotation.XmlRootElement(namespace: namespaceActivityExtensionV2, name: 'LX')
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxActivityLapExtension implements TcxExtension {
   factory TcxActivityLapExtension.fromXmlElement(XmlElement element) =>
@@ -23,8 +23,6 @@ class TcxActivityLapExtension implements TcxExtension {
     this.maxWatts,
     this.steps,
   });
-
-  static const String namespace = namespaceActivityExtensionV2;
 
   @annotation.XmlElement(includeIfNull: false)
   double? avgSpeed;

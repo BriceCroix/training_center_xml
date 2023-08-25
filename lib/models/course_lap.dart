@@ -9,7 +9,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'course_lap.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxCourseLap {
   factory TcxCourseLap.fromXmlElement(XmlElement element) =>
@@ -28,8 +28,6 @@ class TcxCourseLap {
     this.endAltitudeMeters,
     this.endPosition,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   double totalTimeSeconds;

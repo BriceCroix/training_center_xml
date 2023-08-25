@@ -1,25 +1,27 @@
+import 'package:training_center_xml/models/extensions/activity_extension_v2/activity_lap_extension.dart';
+import 'package:training_center_xml/models/extensions/activity_extension_v2/activity_trackpoint_extension.dart';
 import 'package:training_center_xml/namespace.dart';
 import 'package:xml/xml.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'extensions.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxExtensions {
   factory TcxExtensions.fromXmlElement(XmlElement element) =>
       _$TcxExtensionsFromXmlElement(element);
 
-  TcxExtensions(
-      // {
-      //   this.extension,
-      // }
-      );
+  TcxExtensions({
+    this.activityLapExtension,
+    this.activityTrackpointExtension,
+  });
 
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
+  @annotation.XmlElement(name: 'LX', includeIfNull: false)
+  List<TcxActivityLapExtension>? activityLapExtension;
 
-  // @annotation.XmlElement(includeIfNull: false)
-  // List<TcxExtension>? extension;
+  @annotation.XmlElement(name: 'TPX', includeIfNull: false)
+  List<TcxActivityTrackpointExtension>? activityTrackpointExtension;
 
   void buildXmlChildren(
     XmlBuilder builder, {

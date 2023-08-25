@@ -6,7 +6,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'multi_sport_session.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxMultiSportSession {
   factory TcxMultiSportSession.fromXmlElement(XmlElement element) =>
@@ -18,8 +18,6 @@ class TcxMultiSportSession {
     this.notes,
     this.nextSport,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   DateTime id;

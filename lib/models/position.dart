@@ -6,7 +6,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'position.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxPosition {
   factory TcxPosition.fromXmlElement(XmlElement element) =>
@@ -16,8 +16,6 @@ class TcxPosition {
     required this.latitudeDegrees,
     required this.longitudeDegrees,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   TcxDegreesLatitude latitudeDegrees;

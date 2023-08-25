@@ -4,7 +4,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'name_key_reference.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxNameKeyReference {
   factory TcxNameKeyReference.fromXmlElement(XmlElement element) =>
@@ -13,8 +13,6 @@ class TcxNameKeyReference {
   TcxNameKeyReference({
     required this.id,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   String id;

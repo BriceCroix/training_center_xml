@@ -8,7 +8,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'course_point.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxCoursePoint {
   factory TcxCoursePoint.fromXmlElement(XmlElement element) =>
@@ -23,8 +23,6 @@ class TcxCoursePoint {
     this.extensions,
     this.notes,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   TcxCoursePointName name;

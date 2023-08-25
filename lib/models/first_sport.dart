@@ -5,7 +5,7 @@ import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 part 'first_sport.g.dart';
 
-@annotation.XmlRootElement()
+@annotation.XmlRootElement(namespace: namespaceTrainingCenterDatabaseV2)
 @annotation.XmlSerializable(fieldRename: annotation.FieldRename.pascal)
 class TcxFirstSport {
   factory TcxFirstSport.fromXmlElement(XmlElement element) =>
@@ -14,8 +14,6 @@ class TcxFirstSport {
   TcxFirstSport({
     required this.activity,
   });
-
-  static const String namespace = namespaceTrainingCenterDatabaseV2;
 
   @annotation.XmlElement(includeIfNull: false)
   TcxActivity activity;

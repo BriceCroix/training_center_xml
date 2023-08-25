@@ -48,7 +48,7 @@ Certain fields are not mandatory in TCX files, the philosophy about these cases 
 
 ```dart
 final myTcxString = File('my_tcx_file.tcx').readAsStringSync();
-  var tcx = TcxTrainingCenterDatabase.fromXmlString(myTcxString);
+var tcx = TcxTrainingCenterDatabase.fromXmlString(myTcxString);
 ```
 
 
@@ -148,7 +148,7 @@ an open-source training application written using Flutter.
 Feel free to contribute if your favorite feature is missing !
 
 
-## About TCX Extensions
+### About TCX Extensions
 
 The TCX schema definition allows for custom extensions from other schemas. Unfortunately it is not
 possible to put any class in the fields of the class `TcxExtensions` yet, but the two extensions
